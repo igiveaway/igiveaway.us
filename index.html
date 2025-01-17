@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iGiveaway</title>
+    <link rel="stylesheet" href="index.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function() {
+            emailjs.init("UaiETCp7xM-3YTYZo");
+        })();
+    </script>
+</head>
+<body>
+    <header class="main-header">
+        <nav>
+            <div class="logo">
+                <i class="fab fa-instagram"></i>
+                <span>iGiveaway</span>
+            </div>
+            <div class="nav-links">
+                <a href="index.html"class="active">Home</a>
+                <a href="about.html">About Us</a>
+                <a href="rules.html">Rules</a>
+            </div>
+            <div class="theme-switch">
+                <input type="checkbox" id="theme-toggle">
+                <label for="theme-toggle" class="switch">
+                    <i class="fas fa-sun"></i>
+                    <i class="fas fa-moon"></i>
+                </label>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <main>
+            <h1>Instagram Giveaway</h1>
+            <p class="subtitle">Get a random winning comment from your Instagram photos and videos.</p>
+
+            <div class="steps">
+                <div class="step">
+                    <span class="step-number">1</span>
+                    <p>Paste the giveaway post link</p>
+                </div>
+                <div class="step">
+                    <span class="step-number">2</span>
+                    <p>Select and filter</p>
+                </div>
+                <div class="step">
+                    <span class="step-number">3</span>
+                    <p>Click to load comments</p>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <div class="form-container">
+                    <form id="linkForm" onsubmit="return sendEmail(event)">
+                        <div class="form-header">
+                            <i class="fab fa-instagram"></i>
+                            <h2>Enter your giveaway link</h2>
+                        </div>
+
+                        <div class="input-group">
+                            <div class="input-field">
+                                <label>Instagram Post Link</label>
+                                <input type="text" name="link" placeholder="https://www.instagram.com/p/..." required>
+                                <span class="input-hint">Example: https://www.instagram.com/p/ABC123xyz</span>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="submit-btn">
+                            <span>Select</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="filter-section">
+                <h2>Filter Options</h2>
+                <div class="filter-options">
+                    <div class="filter-group">
+                        <label class="checkbox-container">
+                            <input type="checkbox" id="filterMentions">
+                            <span class="checkmark"></span>
+                            <div class="filter-label">
+                                <i class="fas fa-at"></i>
+                                Must mention users
+                            </div>
+                        </label>
+                        <div class="mentions-config" style="display: none;">
+                            <div class="mentions-count">
+                                <label>Number of mentions:</label>
+                                <div class="counter-input">
+                                    <button type="button" class="counter-btn minus">-</button>
+                                    <input type="number" min="1" max="5" value="1" id="mentionsCount">
+                                    <button type="button" class="counter-btn plus">+</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="filter-group">
+                        <label class="checkbox-container">
+                            <input type="checkbox" id="filterFollowers">
+                            <span class="checkmark"></span>
+                            <div class="filter-label">
+                                <i class="fas fa-user-plus"></i>
+                                Must follow profile
+                            </div>
+                        </label>
+                    </div>
+
+                    <div class="filter-group">
+                        <label class="checkbox-container">
+                            <input type="checkbox" id="filterLikes">
+                            <span class="checkmark"></span>
+                            <div class="filter-label">
+                                <i class="fas fa-heart"></i>
+                                Must like the post
+                            </div>
+                        </label>
+                    </div>
+
+                    <div class="filter-group winners-section">
+                        <label>Number of winners:</label>
+                        <div class="counter-input">
+                            <button type="button" class="counter-btn minus">-</button>
+                            <input type="number" id="winnersCount" min="1" max="10" value="1">
+                            <button type="button" class="counter-btn plus">+</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="paymentModal" class="modal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2>🎉 Almost ready!</h2>
+                        <button class="close-modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="premium-features">
+                            <h3>Premium Features</h3>
+                            <ul>
+                                <li><i class="fas fa-check"></i> Comment filtering</li>
+                                <li><i class="fas fa-check"></i> Unlimited comments</li>
+                                <li><i class="fas fa-check"></i> Priority support</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="payment-options">
+                            <div class="price-card">
+                                <h4>Premium</h4>
+                                <div class="price">$4.99</div>
+                                <button class="payment-btn">Pay now</button>
+                            </div>
+                        </div>
+
+                        <div class="code-section">
+                            <p>Do you have a free giveaway code?</p>
+                            <div class="code-input">
+                                <input type="text" id="promoCode" placeholder="Enter your code">
+                                <button id="validateCode">Validate</button>
+                            </div>
+                        </div>
+
+                        <div class="demo-section">
+                            <p class="demo-title">Want to see how it works?</p>
+                            <div class="demo-container">
+                                <a href="demo.html" class="demo-btn">
+                                    <i class="fas fa-play-circle"></i>
+                                    <span>Try Demo</span>
+                                    <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="comments-section">
+                <button class="load-comments-btn">Load Comments</button>
+                <p class="comments-limit"></p>
+            </div>
+            <div class="demo-section">
+                <p class="demo-title">Want to see how it works?</p>
+                <div class="demo-container">
+                    <a href="demo.html" class="demo-btn">
+                        <i class="fas fa-play-circle"></i>
+                        <span>Try Demo</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <footer class="main-footer">
+        <div class="footer-waves">
+            <svg class="waves" xmlns="http://www.w3.org/2000/svg" viewBox="0 24 150 28" preserveAspectRatio="none">
+                <defs>
+                    <path id="wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+                </defs>
+                <g class="parallax">
+                    <use href="#wave" x="48" y="0" fill="rgba(255,255,255,0.7" />
+                    <use href="#wave" x="48" y="3" fill="rgba(255,255,255,0.5)" />
+                    <use href="#wave" x="48" y="5" fill="rgba(255,255,255,0.3)" />
+                    <use href="#wave" x="48" y="7" fill="#fff" />
+                </g>
+            </svg>
+        </div>
+        
+        <div class="footer-content">
+            <div class="footer-section brand">
+                <h3><i class="fab fa-instagram"></i> iGiveaway</h3>
+                <p>The #1 platform for transparent and reliable giveaways</p>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/igiveaway.com_" class="social-btn" target="_blank">
+                        <i class="fab fa-instagram"></i>
+                        <span>Instagram</span>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="footer-section links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="rules.html">Rules</a></li>
+                    <li><a href="t&c.html">T&C</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section contact">
+                <h4>Contact</h4>
+                <div class="contact-info">
+                    <p><i class="fas fa-envelope"></i> @igiveaway.com_</p>
+                    <p><i class="fas fa-map-marker-alt"></i> New York, USA</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="footer-border"></div>
+            <p>&copy; 2024 iGiveaway. All rights reserved.</p>
+        </div>
+    </footer>
+    <script src="index.js"></script>
+</body>
+</html>

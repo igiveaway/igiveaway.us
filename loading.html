@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loading Participants - iGiveaway</title>
+    <link rel="stylesheet" href="loading.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="loading-container">
+        <div class="instagram-card">
+            <div class="loading-header">
+                <i class="fab fa-instagram"></i>
+                <h1>iGiveaway</h1>
+            </div>
+            
+            <div class="loading-content">
+                <div class="loading-spinner">
+                    <div class="spinner-circle"></div>
+                </div>
+                
+                <div class="loading-status">
+                    <h2>Preparing the Giveaway</h2>
+                    <div class="progress-bar">
+                        <div class="progress"></div>
+                    </div>
+                    <p class="status-text">Getting participants...</p>
+                    <div class="participants-counter">
+                        <span id="participantCount">0</span> participants found
+                    </div>
+                </div>
+
+                <div class="loading-steps">
+                    <div class="step completed">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Connecting to Instagram</span>
+                    </div>
+                    <div class="step active">
+                        <i class="fas fa-sync fa-spin"></i>
+                        <span>Verifying comments</span>
+                    </div>
+                    <div class="step">
+                        <i class="fas fa-circle"></i>
+                        <span>Validating requirements</span>
+                    </div>
+                    <div class="step">
+                        <i class="fas fa-circle"></i>
+                        <span>Preparing giveaway</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="loading.js"></script>
+</body>
+</html> 
