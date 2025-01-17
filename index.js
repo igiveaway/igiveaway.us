@@ -128,7 +128,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Array de códigos válidos
         const validCodes = [
-            'GIVEAWAY100',
+            'ALLISON',
             'WINNER50', // Este código redirigirá a loading2.html
         ];
         
